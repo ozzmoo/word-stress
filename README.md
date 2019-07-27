@@ -3,7 +3,7 @@
 ## Описание
 
 Приложение для запоминания сложных ударений
-Vue.js
+demo: http://word-stress-ozzmo.surge.sh
 
 
 ## Project setup
