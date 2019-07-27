@@ -8,9 +8,14 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "core-js": "^2.6.5",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "setimmediate": "^1.0.5",
     "vue": "^2.6.10",
-    "vuetify": "^2.0.0"
+    "vuetify": "^2.0.0",
+    "wiktionary": "^1.2.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.9.0",

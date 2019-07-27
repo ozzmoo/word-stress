@@ -52,17 +52,36 @@
           </v-card-text>
           <v-card-actions>
             <v-btn @click="createCard" text color="deep-purple accent-4">Next word</v-btn>
+            <v-btn @click="searchInWiki" text color="deep-purple accent-4">Wiki</v-btn>
           </v-card-actions>            
         </v-card>
-        <p class="text-center font-weight-light">mestervalera@gmail.com</p>
+        <p class="text-center font-weight-light email">send nudes: mestervalera@gmail.com</p>
+        
+        <v-card
+          v-if="showWiki"
+          max-width="700"
+          class="mx-auto"
+        >
+          <v-card-text>
+            <div class="wiki"></div>
+          </v-card-text>
+
+        </v-card>
+        
+        
       </v-flex>
     </v-layout>
+
+    
   </v-app>
   
 </template>
 
 <script>
+
 import words from '../wordbase/words.js';
+import axios from "axios";
+
 export default {
   data: () => ({
     words,
@@ -72,7 +91,8 @@ export default {
     type : 'success',
     isUserSelect: false,
     success: 0,
-    errors: 0
+    errors: 0,
+    showWiki: false
   }),
   methods: {
     userSelect(i){
@@ -80,6 +100,7 @@ export default {
     },
 
     createCard() {
+      this.showWiki = false
       this.isUserSelect = false
       const n = Math.floor(Math.random() * (this.words.length ));
       const randomItem = this.words[n];
@@ -89,19 +110,29 @@ export default {
     },
 
     checkStress(symb){
-      console.log(symb, this.correct)
       if (symb == this.correct){
-        console.log("cool")
         this.type = "success"
         this.isUserSelect = true
         this.success+=1
         setTimeout(this.createCard, 500)
       } else {
-        console.log("not cool")
         this.type = "error"
         this.isUserSelect = true
         this.errors+=1
       }
+    },
+    searchInWiki: function() {
+      this.showWiki = true
+      axios
+        .post("https://word-stress.herokuapp.com/wiki", {
+          word: this.symbols.join("")
+        })
+        .then(response => {
+          const resHtml = response.data
+          console.log(resHtml)
+          document.querySelector('.wiki').innerHTML = resHtml          
+        })
+      
     }
   },
   mounted(){
@@ -122,5 +153,8 @@ export default {
 .counter{
   margin-right: 5px;
   padding: 0 30px;
+}
+.email{
+  margin-top: 10px;
 }
 </style>
