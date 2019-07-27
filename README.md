@@ -1,5 +1,11 @@
 # word-stress
 
+## Описание
+```
+Приложение для запоминания сложных ударений
+Vue.js
+```
+
 ## Project setup
 ```
 npm install
