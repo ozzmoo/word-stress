@@ -14,7 +14,7 @@
     "express": "^4.17.1",
     "setimmediate": "^1.0.5",
     "vue": "^2.6.10",
-    "vuetify": "^2.0.0",
+    "vuetify": "^2.6.10",
     "wiktionary": "^1.2.0"
   },
   "devDependencies": {
